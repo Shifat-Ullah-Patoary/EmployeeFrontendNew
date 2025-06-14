@@ -1,0 +1,64 @@
+<div class="modal-overlay" (click)="onCancel()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- Stop propagation to prevent modal from closing when clicking inside content -->
+    <h2>Edit Employee</h2>
+
+    <form (ngSubmit)="onSave()">
+      <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" [(ngModel)]="employeeToEdit.id" name="id" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="employeeToEdit.name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="employeeToEdit.email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" [(ngModel)]="employeeToEdit.dob" name="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label for="joiningDate">Joining Date:</label>
+        <input type="date" id="joiningDate" [(ngModel)]="employeeToEdit.joiningDate" name="joiningDate" required>
+      </div>
+
+     <div class="form-group">
+      <label for="department">Department:</label>
+      <select id="department" name="department" [(ngModel)]="employeeToEdit.department" required>
+        <option value="" disabled selected>Select Department</option>
+        <option value="HR">HR</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Sales">Sales</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+      </div>
+
+    <div class="form-group">
+      <label for="position">Position:</label>
+      <select id="position" name="position" [(ngModel)]="employeeToEdit.position" required>
+        <option value="" disabled selected>Select Position</option>
+        <option value="Manager">Manager</option>
+        <option value="Developer">Developer</option>
+        <option value="Analyst">Analyst</option>
+        <option value="Executive">Executive</option>
+      </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="save-button">Save Changes</button>
+        <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+
+    <div *ngIf="message" class="message" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      {{ message }}
+    </div>
+  </div>
+</div>

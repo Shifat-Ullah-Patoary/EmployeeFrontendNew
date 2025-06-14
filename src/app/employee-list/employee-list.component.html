@@ -1,0 +1,51 @@
+<div class="employee-list-container">
+  <h2>Employee List</h2>
+
+  <p *ngIf="errorMessage" class="message error">{{ errorMessage }}</p>
+
+  <div *ngIf="employees.length === 0 && !errorMessage; else employeeTable" class="no-employees">
+    <p>No employees found. <a routerLink="/add-employee">Add one!</a></p>
+  </div>
+
+  <ng-template #employeeTable>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>DOB</th>
+            <th>Joining Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.dob }}</td>
+            <td>{{ employee.joiningDate }}</td>
+            <td class="actions">
+              <button class="update-button" (click)="openEditModal(employee)">Update</button>
+              <button class="delete-button" (click)="deleteEmployee(employee.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Employee Edit Modal Component -->
+<!-- Only render if showEditModal is true and an employee is selected -->
+<app-employee-edit-modal
+  *ngIf="showEditModal && selectedEmployeeForEdit"
+  [employee]="selectedEmployeeForEdit"
+  (closeModal)="onModalClose($event)"
+></app-employee-edit-modal>

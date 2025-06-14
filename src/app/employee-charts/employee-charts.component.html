@@ -1,0 +1,55 @@
+<div class="charts-container">
+  <h2>Employee Data Visualization (ngx-charts)</h2>
+
+  <p *ngIf="errorMessage" class="message error">{{ errorMessage }}</p>
+
+  <div class="chart-grid">
+    <!-- ngx-charts: Employees per Department (Bar Chart) -->
+    <div class="chart-wrapper ngx-chart-wrapper">
+      <h3>Employees per Department</h3>
+      <ngx-charts-bar-vertical
+        [view]="ngxDeptBarView"
+        [scheme]="ngxDeptBarColorScheme"
+        [results]="ngxDeptBarChartData"
+        [gradient]="ngxDeptBarChartOptions.gradient"
+        [xAxis]="ngxDeptBarChartOptions.showXAxis"
+        [yAxis]="ngxDeptBarChartOptions.showYAxis"
+        [legend]="ngxDeptBarChartOptions.showLegend"
+        [showXAxisLabel]="ngxDeptBarChartOptions.showXAxisLabel"
+        [showYAxisLabel]="ngxDeptBarChartOptions.showYAxisLabel"
+        [xAxisLabel]="ngxDeptBarChartOptions.xAxisLabel"
+        [yAxisLabel]="ngxDeptBarChartOptions.yAxisLabel"
+        [roundDomains]="ngxDeptBarChartOptions.roundDomains"
+        [trimXAxisTicks]="ngxDeptBarChartOptions.trimXAxisTicks"
+        [trimYAxisTicks]="ngxDeptBarChartOptions.trimYAxisTicks"
+        [tooltipDisabled]="ngxDeptBarChartOptions.tooltipDisabled"
+        (select)="onSelect($event)"
+      >
+      </ngx-charts-bar-vertical>
+      <div *ngIf="ngxDeptBarChartData.length === 0" class="no-data">
+        No department data available for charts. Add some employees!
+      </div>
+    </div>
+
+    <!-- ngx-charts: Employees by Position (Pie Chart) -->
+    <div class="chart-wrapper ngx-chart-wrapper">
+      <h3>Employees by Position</h3>
+      <ngx-charts-pie-chart
+        [view]="ngxPositionPieView"
+        [scheme]="ngxPositionPieColorScheme"
+        [results]="ngxPositionPieChartData"
+        [gradient]="ngxPositionPieChartOptions.gradient"
+        [legend]="ngxPositionPieChartOptions.showLegend"
+        [labels]="ngxPositionPieChartOptions.showLabels"
+        [doughnut]="ngxPositionPieChartOptions.isDoughnut"
+        [arcWidth]="ngxPositionPieChartOptions.arcWidth"
+        [tooltipDisabled]="ngxPositionPieChartOptions.tooltipDisabled"
+        (select)="onSelect($event)"
+      >
+      </ngx-charts-pie-chart>
+      <div *ngIf="ngxPositionPieChartData.length === 0" class="no-data">
+        No position data available for charts. Add some employees!
+      </div>
+    </div>
+  </div>
+</div>
