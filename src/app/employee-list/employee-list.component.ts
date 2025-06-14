@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
- // Adjust path if needed
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component'; // Import modal component
 import { Employee, EmployeeserviceService } from '../service/EmployeeService/employeeservice.service';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports:[CommonModule, EmployeeEditModalComponent], // Add modal component here
+  imports:[CommonModule, EmployeeEditModalComponent], 
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
@@ -15,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   errorMessage: string = '';
 
-  // State for the update modal
+  
   showEditModal: boolean = false;
   selectedEmployeeForEdit: Employee | null = null;
 
@@ -27,7 +26,7 @@ export class EmployeeListComponent implements OnInit {
 
  
   loadEmployees(): void {
-    this.errorMessage = ''; // Clear previous errors
+    this.errorMessage = ''; 
     this.employeeService.getallEmployees().subscribe({
       next: (data: Employee[]) => {
         this.employees = data;
@@ -40,13 +39,9 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  /**
-   * Opens the edit modal with the selected employee's data.
-   * @param employee The employee to be edited.
-   */
+  
   openEditModal(employee: Employee): void {
-    // Create a deep copy to avoid direct manipulation of the table data
-    // before the update is confirmed. Use JSON.parse(JSON.stringify(obj)) for simple objects.
+  
     this.selectedEmployeeForEdit = { ...employee };
     this.showEditModal = true;
   }
@@ -56,16 +51,16 @@ export class EmployeeListComponent implements OnInit {
    * @param updatedEmployee The employee data if successfully updated, or null if cancelled.
    */
   onModalClose(updatedEmployee: Employee | null): void {
-    this.showEditModal = false; // Close the modal
-    this.selectedEmployeeForEdit = null; // Clear selected employee
+    this.showEditModal = false; 
+    this.selectedEmployeeForEdit = null; 
 
     if (updatedEmployee) {
-      // If an employee was updated, reload the list to reflect changes
+      
       this.loadEmployees();
-      // Optional: Show a success message
+      
       console.log('Employee updated successfully from modal:', updatedEmployee);
-      this.errorMessage = 'Employee updated successfully!'; // Use errorMessage for general messages too
-      setTimeout(() => this.errorMessage = '', 3000); // Clear message after 3 seconds
+      this.errorMessage = 'Employee updated successfully!'; 
+      setTimeout(() => this.errorMessage = '', 3000); 
     } else {
       console.log('Employee update cancelled or failed.');
     }
@@ -83,14 +78,14 @@ export class EmployeeListComponent implements OnInit {
     }
 
     if (confirm('Are you sure you want to delete this employee?')) {
-      this.errorMessage = ''; // Clear previous errors
+      this.errorMessage = ''; 
       this.employeeService.deleteEmployee(id).subscribe({
         next: () => {
           console.log(`Employee with ID ${id} deleted successfully.`);
           // Remove the deleted employee from the local array to update the UI immediately
           this.employees = this.employees.filter(emp => emp.id !== id);
           this.errorMessage = 'Employee deleted successfully!';
-          setTimeout(() => this.errorMessage = '', 3000); // Clear message after 3 seconds
+          setTimeout(() => this.errorMessage = '', 3000); 
         },
         error: (error: any) => {
           console.error(`Error deleting employee with ID ${id}:`, error);

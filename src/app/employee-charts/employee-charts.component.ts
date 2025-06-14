@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// ngx-charts Imports
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-// --- REMOVED problematic imports for ColorScheme and Color ---
-// import { ColorScheme, Color } from '@swimlane/ngx-charts'; // This line is REMOVED
 
-// Your existing service and Employee interface
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { Employee, EmployeeserviceService } from '../service/EmployeeService/employeeservice.service';
 
 @Component({
@@ -20,15 +17,15 @@ export class EmployeeChartsComponent implements OnInit {
   employees: Employee[] = [];
   errorMessage: string = '';
 
-  // --- ngx-charts: Employees per Department (Vertical Bar Chart) ---
+  
   ngxDeptBarChartData: any[] = [];
   ngxDeptBarView: [number, number] = [700, 400];
-  // Cast to 'any' to bypass strict TypeScript checking for 'scheme' input
-  ngxDeptBarColorScheme: any = { // Changed type to 'any'
+  
+  ngxDeptBarColorScheme: any = { 
     name: 'customDeptScheme',
     selectable: true,
     group: 'default',
-    domain: ['#007bff'] // Single color for bars
+    domain: ['#007bff'] 
   };
   ngxDeptBarChartOptions = {
     showXAxis: true,
@@ -46,11 +43,11 @@ export class EmployeeChartsComponent implements OnInit {
     animations: true,
   };
 
-  // --- ngx-charts: Employees by Position (Pie Chart) ---
+  
   ngxPositionPieChartData: any[] = [];
   ngxPositionPieView: [number, number] = [700, 400];
-  // Cast to 'any' to bypass strict TypeScript checking for 'scheme' input
-  ngxPositionPieColorScheme: any = { // Changed type to 'any'
+  
+  ngxPositionPieColorScheme: any = { 
     name: 'customPositionScheme',
     selectable: true,
     group: 'default',
