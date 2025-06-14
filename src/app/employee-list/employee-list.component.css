@@ -1,100 +1,228 @@
+/* General Body/Font Reset */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light background for the whole page */
+    font-family: 'Inter', sans-serif; /* Keep your chosen font */
+    color: #333;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts */
+}
+
+/* --- Container Styling --- */
 .employee-list-container {
-  font-family: 'Inter', sans-serif;
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    max-width: 1100px; /* Slightly wider for more content space */
+    margin: 40px auto; /* Slightly adjusted margin */
+    padding: 30px 25px; /* Consistent padding, slight horizontal adjust */
+    background-color: #ffffff;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, more spread-out shadow */
+    text-align: center;
+    position: relative; /* Needed for potential future positioning of elements */
+    overflow: hidden; /* Ensures shadows/borders don't bleed */
 }
 
+/* --- Heading Styling --- */
 h2 {
-  color: #343a40;
-  margin-bottom: 25px;
-  font-size: 2.2rem;
-  font-weight: 700;
+    color: #2c3e50; /* A deep, rich blue-grey for headings */
+    margin-bottom: 30px; /* More space below heading */
+    font-size: 2.5rem; /* Larger heading for impact */
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+    position: relative;
+    padding-bottom: 10px; /* Space for an underline effect */
 }
 
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Short underline effect */
+    height: 4px;
+    background-color: #4CAF50; /* A vibrant green accent */
+    margin: 10px auto 0; /* Center the underline */
+    border-radius: 2px;
+}
+
+/* --- Message Styling (Error) --- */
 .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-weight: 500;
+    background-color: #ffebe6; /* Softer red background */
+    color: #cc0000; /* Stronger red text */
+    border: 1px solid #ff9999;
+    padding: 12px 20px;
+    border-radius: 8px; /* More rounded */
+    margin-bottom: 25px;
+    font-weight: 600; /* Bolder text */
+    font-size: 0.95rem;
+    text-align: left; /* Align text left for readability */
 }
 
+/* --- No Employees Message --- */
 .no-employees {
-  margin-top: 30px;
-  font-size: 1.1rem;
-  color: #6c757d;
+    margin-top: 40px; /* More vertical space */
+    font-size: 1.2rem; /* Slightly larger text */
+    color: #6c757d;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for the message box */
+    border-radius: 8px;
+    border: 1px dashed #e0e0e0; /* Dashed border for a friendly feel */
 }
 
 .no-employees a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out; /* Smooth transition for hover */
 }
 
 .no-employees a:hover {
-  text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline;
 }
 
+/* --- Table Styling --- */
 .table-responsive {
-  overflow-x: auto; /* Makes table horizontally scrollable on small screens */
-  margin-top: 20px;
+    overflow-x: auto; /* Essential for responsiveness on small screens */
+    margin-top: 30px; /* More space above the table */
+    border-radius: 8px; /* Rounded corners for the table wrapper */
+    border: 1px solid #e0e0e0; /* Subtle border around the table */
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse; /* Collapses borders */
+    margin: 0; /* Remove default table margin */
+    min-width: 700px; /* Ensures the table doesn't get too squished before scrolling */
 }
 
 th, td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #dee2e6;
+    padding: 15px 20px; /* More generous padding for better readability */
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Lighter border for separation */
 }
 
 th {
-  background-color: #f1f3f5;
-  color: #495057;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-transform: uppercase;
+    background-color: #e9eff6; /* A soft blue-grey for headers */
+    color: #34495e; /* Darker text for headers */
+    font-weight: 700; /* Bolder headers */
+    font-size: 0.9rem; /* Slightly smaller header font for clean look */
+    text-transform: uppercase;
+    letter-spacing: 0.5px; /* Slight letter spacing */
+}
+
+tbody tr:last-child td {
+    border-bottom: none; /* No border for the last row */
 }
 
 tbody tr:hover {
-  background-color: #e9ecef;
+    background-color: #f7f9fc; /* Very subtle highlight on hover */
+    box-shadow: inset 3px 0 0 0 #4CAF50; /* Green line on left on hover */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* --- Action Buttons --- */
+.actions {
+    display: flex; /* Use flexbox for button alignment */
+    gap: 8px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the start of the cell */
 }
 
 .actions button {
-  padding: 8px 12px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease-in-out;
+    padding: 10px 16px; /* Larger padding for easier clicking */
+    border: none;
+    border-radius: 6px; /* Slightly more rounded buttons */
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out; /* Smooth transition for all hover effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
+}
+
+.actions button:active {
+    transform: translateY(1px); /* Slight press effect on click */
 }
 
 .update-button {
-  background-color: #007bff;
-  color: white;
+    background-color: #007bff; /* Primary blue */
+    color: white;
 }
 
 .update-button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* More prominent shadow on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
 }
 
 .delete-button {
-  background-color: #dc3545; /* Red for delete */
-  color: white;
+    background-color: #dc3545; /* Red for delete */
+    color: white;
 }
 
 .delete-button:hover {
-  background-color: #c82333;
+    background-color: #c82333;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2); /* More prominent shadow on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Medium devices (tablets) */
+    .employee-list-container {
+        margin: 30px 20px;
+        padding: 25px 20px;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    th, td {
+        padding: 12px 15px;
+    }
+    .actions button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) { /* Small devices (larger phones) */
+    .employee-list-container {
+        margin: 20px 15px;
+        padding: 20px 15px;
+        border-radius: 8px;
+    }
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    .message.error, .no-employees {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    th, td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    /* Table overflow-x: auto is still key here */
+}
+
+@media (max-width: 576px) { /* Extra small devices (phones) */
+    .employee-list-container {
+        margin: 15px 10px;
+        padding: 15px 10px;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    .actions {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 5px; /* Smaller gap when stacked */
+    }
+    .actions button {
+        width: 100%; /* Make buttons full width when stacked */
+        font-size: 0.85rem;
+        padding: 8px;
+    }
 }

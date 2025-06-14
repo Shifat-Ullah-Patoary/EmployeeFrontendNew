@@ -1,88 +1,228 @@
+/* --- Global Resets & Body Styling --- */
+/* This is a good practice to include at the top of your main CSS file */
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light background for the entire page */
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Smoother font rendering for webkit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother font rendering for Mozilla browsers */
+}
+
+/* --- Form Container --- */
 .form-container {
-  font-family: 'Inter', sans-serif;
-  max-width: 550px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    max-width: 600px; /* Slightly increased max-width for more breathing room */
+    margin: 40px auto; /* Slightly adjusted margin for better vertical spacing */
+    padding: 40px; /* More generous padding inside the container */
+    background-color: #ffffff;
+    border-radius: 15px; /* More rounded corners for a modern look */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1); /* Softer, more spread-out shadow for depth */
+    text-align: center;
+    position: relative; /* For potential absolute positioning of elements inside */
+    overflow: hidden; /* Ensures shadow doesn't get clipped */
 }
 
+/* --- Heading Styling --- */
 h2 {
-  color: #343a40;
-  margin-bottom: 25px;
-  font-size: 2rem;
-  font-weight: 700;
+    color: #2c3e50; /* A deep, rich blue-grey for headings */
+    margin-bottom: 35px; /* More space below the heading */
+    font-size: 2.3rem; /* Slightly larger heading for impact */
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Tighter letter spacing for a clean look */
+    position: relative;
+    padding-bottom: 15px; /* Space for a subtle underline effect */
 }
 
+h2::after {
+    content: '';
+    display: block;
+    width: 70px; /* Short, centered underline */
+    height: 4px;
+    background-color: #4CAF50; /* A vibrant green accent color */
+    margin: 10px auto 0; /* Centers the underline below the heading */
+    border-radius: 2px; /* Slightly rounded ends for the underline */
+}
+
+/* --- Form Group Styling (Label + Input) --- */
 .form-group {
-  margin-bottom: 20px;
-  text-align: left;
+    margin-bottom: 25px; /* More space between form fields */
+    text-align: left;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  color: #495057;
-  font-weight: 600;
-  font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px; /* More space between label and input */
+    color: #495057;
+    font-weight: 600;
+    font-size: 1rem; /* Slightly larger label font */
+    letter-spacing: 0.2px;
 }
 
+/* --- Input Field Styling --- */
 input[type="text"],
 input[type="email"],
-input[type="date"] {
-  width: calc(100% - 20px); /* Adjust for padding */
-  padding: 10px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  font-size: 1rem;
-  color: #343a40;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+input[type="date"],
+select { /* Include select for consistent styling */
+    width: 100%; /* Use 100% width with box-sizing: border-box for full width */
+    padding: 12px 15px; /* More generous padding inside inputs */
+    border: 1px solid #ced4da;
+    border-radius: 8px; /* More rounded input fields */
+    font-size: 1.05rem; /* Slightly larger input text */
+    color: #343a40;
+    background-color: #fcfcfc; /* Slightly off-white background for inputs */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    -webkit-appearance: none; /* Reset default browser styles for consistency */
+    -moz-appearance: none;
+    appearance: none; /* Necessary for select styling */
 }
+
+/* Specific styling for select dropdown arrow if needed (more advanced) */
+select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2C114.7L157.9%2C243.6c-4.7%2C4.7-12.3%2C4.7-17%2C0L5.3%2C114.7c-4.7-4.7-4.7-12.3%2C0-17l14-14c4.7-4.7%2C12.3-4.7%2C17%2C0l113.3%2C113.8L256%2C83.7c4.7-4.7%2C12.3-4.7%2C17%2C0l14%2C14C291.7%2C102.4%2C291.7%2C110%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 35px; /* Make space for the custom arrow */
+}
+
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="date"]:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff; /* Vibrant blue border on focus */
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.2); /* Softer, more contained focus shadow */
+    background-color: #ffffff; /* Ensure white background on focus */
 }
 
+/* Placeholder styling */
+input::placeholder {
+    color: #adb5bd;
+    opacity: 1; /* Firefox default is 0.5 */
+}
+
+/* --- Submit Button Styling --- */
 button[type="submit"] {
-  background-color: #28a745; /* Green for success/save */
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 15px;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    background-color: #28a745; /* Vibrant green for action */
+    color: white;
+    padding: 15px 30px; /* Larger padding for a more substantial button */
+    border: none;
+    border-radius: 8px; /* More rounded corners */
+    font-size: 1.2rem; /* Larger font size for prominence */
+    cursor: pointer;
+    width: 100%;
+    margin-top: 25px; /* More space above the button */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 button[type="submit"]:hover {
-  background-color: #218838;
-  transform: translateY(-1px);
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3); /* More prominent shadow on hover */
 }
 
+button[type="submit"]:active {
+    transform: translateY(0); /* Press down effect on click */
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2); /* Reduced shadow on active */
+}
+
+/* --- Message Styling --- */
 .message {
-  margin-top: 20px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: 500;
-  font-size: 1rem;
+    margin-top: 30px; /* More space above the message */
+    padding: 15px 20px; /* More padding for message boxes */
+    border-radius: 8px; /* More rounded corners */
+    font-weight: 500;
+    font-size: 1.05rem; /* Slightly larger message text */
+    text-align: left; /* Align message text to the left */
 }
 
 .message.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+    background-color: #e6ffed; /* Softer success background */
+    color: #1a7a3a; /* Darker green for success text */
+    border: 1px solid #bce1c1;
 }
 
 .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+    background-color: #ffe6e6; /* Softer error background */
+    color: #cc0000; /* Stronger red for error text */
+    border: 1px solid #ff9999;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) { /* Tablets and larger phones */
+    .form-container {
+        margin: 30px 20px; /* Adjust margin for smaller screens */
+        padding: 30px 25px; /* Slightly reduce padding */
+        border-radius: 12px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select {
+        font-size: 1rem; /* Slightly smaller font for inputs */
+        padding: 10px 12px;
+    }
+
+    button[type="submit"] {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+
+    .message {
+        font-size: 0.95rem;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 576px) { /* Smaller phones */
+    .form-container {
+        margin: 20px 15px; /* Even tighter margin for small screens */
+        padding: 25px 15px; /* Further reduce padding */
+        border-radius: 10px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 10px 15px;
+        margin-top: 20px;
+    }
+
+    .message {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
 }

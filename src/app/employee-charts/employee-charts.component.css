@@ -1,84 +1,207 @@
+/* --- Global Body/Font Reset (Place at the top of your main CSS) --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light background for the whole page */
+    font-family: 'Inter', sans-serif; /* Your chosen font */
+    color: #333;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts */
+}
+
+/* --- Charts Container Styling --- */
 .charts-container {
-  font-family: 'Inter', sans-serif;
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    max-width: 1300px; /* Slightly wider for more chart space */
+    margin: 40px auto; /* Slightly adjusted margin */
+    padding: 35px 30px; /* More generous padding */
+    background-color: #ffffff;
+    border-radius: 15px; /* More rounded corners for a modern card-like feel */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08); /* Softer, more spread-out shadow */
+    text-align: center;
+    overflow: hidden; /* Ensures shadows/borders don't bleed */
 }
 
+/* --- Main Heading Styling --- */
 h2 {
-  color: #343a40;
-  margin-bottom: 30px;
-  font-size: 2.2rem;
-  font-weight: 700;
+    color: #2c3e50; /* Deep, rich blue-grey for headings */
+    margin-bottom: 35px; /* More space below heading */
+    font-size: 2.5rem; /* Larger heading for impact */
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+    position: relative;
+    padding-bottom: 15px; /* Space for an underline effect */
 }
 
+h2::after {
+    content: '';
+    display: block;
+    width: 80px; /* Short, accent underline */
+    height: 4px;
+    background-color: #4CAF50; /* Vibrant green accent */
+    margin: 10px auto 0; /* Center the underline */
+    border-radius: 2px;
+}
+
+/* --- Sub-Heading Styling for individual charts --- */
 h3 {
-  color: #495057;
-  margin-top: 40px;
-  margin-bottom: 25px;
-  font-size: 1.6rem;
-  font-weight: 600;
-  border-bottom: 1px solid #e9ecef;
-  padding-bottom: 10px;
+    color: #34495e; /* Slightly lighter than H2, but still strong */
+    margin-top: 45px; /* More space above sub-headings */
+    margin-bottom: 25px;
+    font-size: 1.8rem; /* Larger sub-heading */
+    font-weight: 600;
+    border-bottom: 2px solid #e9eff6; /* Slightly thicker, softer border */
+    padding-bottom: 15px; /* More padding below sub-heading and above border */
+    text-align: center; /* Ensure sub-headings are centered */
+    letter-spacing: 0.2px;
 }
 
+/* --- Error Message Styling --- */
 .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-weight: 500;
+    background-color: #ffebe6; /* Softer red background */
+    color: #cc0000; /* Stronger red text */
+    border: 1px solid #ff9999;
+    padding: 12px 20px;
+    border-radius: 8px; /* More rounded */
+    margin-bottom: 25px;
+    font-weight: 600; /* Bolder text */
+    font-size: 0.95rem;
+    text-align: left; /* Align text left for readability */
 }
 
+/* --- Chart Grid Layout --- */
 .chart-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Stack charts on small screens */
-  gap: 30px; /* Space between charts */
-  margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Default: stack charts on small screens */
+    gap: 40px; /* More space between charts for a less cramped look */
+    margin-top: 30px;
 }
 
-@media (min-width: 768px) {
-  .chart-grid {
-    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-  }
-}
-
+/* --- Individual Chart Wrapper --- */
 .chart-wrapper {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    background-color: #ffffff; /* White background for individual chart cards */
+    padding: 25px; /* Consistent padding */
+    border-radius: 12px; /* Nicely rounded corners */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow for cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth hover effects */
 }
 
-/* Specific styling for ngx-charts wrapper */
+.chart-wrapper:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* More prominent shadow on hover */
+}
+
+/* --- Specific Chart Library Wrappers --- */
+/* For ngx-charts */
 .ngx-chart-wrapper {
-  /* ngx-charts handles its own internal sizing based on [view] input */
-  height: auto; /* Allow height to be determined by content/view setting */
-  min-height: 400px; /* Ensure a minimum height */
-  margin-bottom: 30px; /* Space it out from other charts */
+    width: 100%; /* Ensure it takes full width of its parent wrapper */
+    height: auto;
+    min-height: 350px; /* Slightly adjusted min-height, charts will scale within this */
+    /* Ngx-charts often requires its own [view] input for responsive sizing */
 }
 
-/* AG Charts specific styling */
+/* For AG Charts (if you are still using it, though npm install issue suggests not) */
 ag-charts-angular {
-  width: 100%;
-  height: 400px;
-  display: block;
-  margin: 0 auto;
+    width: 100%;
+    min-height: 350px; /* Minimum height for AG charts */
+    height: auto; /* Allow height to be determined by content/view setting */
+    display: block;
+    margin: 0 auto;
 }
 
+/* --- No Data Message --- */
 .no-data {
-  color: #6c757d;
-  font-style: italic;
-  margin-top: 20px;
-  font-size: 1.1rem;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 30px; /* More space above the message */
+    font-size: 1.1rem;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for the message box */
+    border-radius: 8px;
+    border: 1px dashed #e0e0e0; /* Dashed border for a friendly feel */
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 992px) { /* Laptops and larger tablets: 3 columns if needed */
+    .chart-grid.three-columns { /* Add a class 'three-columns' to .chart-grid if you want 3 charts */
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 1200px) { /* Adjust for slightly smaller desktops/large tablets */
+    .charts-container {
+        max-width: 95%; /* Take up more width */
+    }
+}
+
+@media (max-width: 768px) { /* Tablets */
+    .charts-container {
+        margin: 30px 20px;
+        padding: 30px 25px;
+        border-radius: 12px;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+    }
+    h2::after {
+        width: 60px;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+    }
+    .chart-grid {
+        grid-template-columns: 1fr; /* Revert to single column on tablets for better stacking */
+        gap: 30px;
+    }
+    .chart-wrapper {
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .ngx-chart-wrapper, ag-charts-angular {
+        min-height: 300px; /* Slightly reduce min-height for smaller screens */
+    }
+    .no-data {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) { /* Smaller phones */
+    .charts-container {
+        margin: 20px 15px;
+        padding: 25px 20px;
+        border-radius: 10px;
+    }
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    h2::after {
+        width: 50px;
+        height: 3px;
+    }
+    h3 {
+        font-size: 1.3rem;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+    .chart-grid {
+        gap: 20px;
+    }
+    .chart-wrapper {
+        padding: 15px;
+    }
+    .ngx-chart-wrapper, ag-charts-angular {
+        min-height: 250px; /* Further reduce min-height for very small screens */
+    }
 }
