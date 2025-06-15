@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Employee, EmployeeserviceService } from '../service/EmployeeService/employeeservice.service';
-// Adjust path
+
 
 @Component({
   selector: 'app-employee-edit-modal',
@@ -32,8 +32,7 @@ export class EmployeeEditModalComponent implements OnInit {
   constructor(private employeeService: EmployeeserviceService) { }
 
   ngOnInit(): void {
-    // Initialize employeeToEdit with the input employee's data
-    // Use a deep copy if your object contains nested objects that could be modified
+    
     this.employeeToEdit = { ...this.employee };
   }
 
@@ -42,9 +41,9 @@ export class EmployeeEditModalComponent implements OnInit {
    * Calls the service to update the employee.
    */
   onSave(): void {
-    this.message = ''; // Clear previous messages
+    this.message = ''; 
 
-    // Basic validation
+    
     if (!this.employeeToEdit.name || !this.employeeToEdit.email || !this.employeeToEdit.department) {
       this.message = 'Please fill in all required fields.';
       this.isSuccess = false;
@@ -63,7 +62,7 @@ export class EmployeeEditModalComponent implements OnInit {
         console.log('Employee updated successfully:', responseEmployee);
         this.message = `Employee "${responseEmployee.name}" updated successfully!`;
         this.isSuccess = true;
-        // Emit the updated employee data back to the parent
+      
         this.closeModal.emit(responseEmployee);
       },
       error: (error: any) => {
@@ -74,10 +73,8 @@ export class EmployeeEditModalComponent implements OnInit {
     });
   }
 
-  /**
-   * Closes the modal without saving changes.
-   */
+  
   onCancel(): void {
-    this.closeModal.emit(null); // Emit null to indicate cancellation
+    this.closeModal.emit(null); 
   }
 }

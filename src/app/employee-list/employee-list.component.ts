@@ -26,7 +26,7 @@ export class EmployeeListComponent implements OnInit {
 
  
   loadEmployees(): void {
-    this.errorMessage = ''; 
+    this.errorMessage = ''; //clear previous error messages
     this.employeeService.getallEmployees().subscribe({
       next: (data: Employee[]) => {
         this.employees = data;
@@ -66,10 +66,7 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
-  /**
-   * Handles the deletion of an employee.
-   * @param id The ID of the employee to delete.
-   */
+  
   deleteEmployee(id: number | undefined): void {
     if (id === undefined) {
       console.warn('Cannot delete employee: ID is undefined.');
@@ -82,7 +79,6 @@ export class EmployeeListComponent implements OnInit {
       this.employeeService.deleteEmployee(id).subscribe({
         next: () => {
           console.log(`Employee with ID ${id} deleted successfully.`);
-          // Remove the deleted employee from the local array to update the UI immediately
           this.employees = this.employees.filter(emp => emp.id !== id);
           this.errorMessage = 'Employee deleted successfully!';
           setTimeout(() => this.errorMessage = '', 3000); 
